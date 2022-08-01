@@ -13,7 +13,8 @@ class Game < Item
   end
 
   private
+
   def can_be_archived?
-    super()&&((DateTime.now - @last_played_at) / 365).floor>2
+    super() && ((DateTime.now - @last_played_at) / 365).floor > 2
   end
 end
