@@ -5,7 +5,9 @@ describe Author do
   context "check for data type and value" do
     before (:each) do
        @author=Author.new("Tadesse", "Alemayehu")
-      @game=Game.new(nil, @author, nil, "2000-12-05",
+       @gener=double("Gener")
+       @label=double("label")
+      @game=Game.new(@gener, @author, @label, "2000-12-05",
                  2, "2015-12-05", false)
     end
     it "assert author is instance of Author" do
