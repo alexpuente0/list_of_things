@@ -17,8 +17,26 @@ def main
     response = gets.chomp
 
     case response
-    when true
+    when '1'
       p 'not implemented yet'
+    when '2'
+      p 'not implemented yet'
+    when '3'
+      p 'not implemented yet'
+    when '4'
+      p 'not implemented yet'
+    when '5'
+      p 'not implemented yet'
+    when '6'
+      p 'not implemented yet'
+    when '7'
+      p 'not implemented yet'
+    when '8'
+      p 'not implemented yet'
+    when '9'
+      p 'not implemented yet'
+    when '10'
+      exit
     end
   end
 end
