@@ -1,7 +1,7 @@
 require 'date'
 
 class Item
-  attr_accessor :genre,:author,:source,:label,:publish_date
+  attr_accessor :genre,:author,:label,:publish_date
   def initialize(publish_date,archived: false)
     @id=rand(0..100000)
     @publish_date=Date.parse(publish_date)
@@ -13,10 +13,6 @@ class Item
 
   def author(author)
     @author = author
-  end
-
-  def source(source)
-    @source = source
   end
 
   def label(label)
