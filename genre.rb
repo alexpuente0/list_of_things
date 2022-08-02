@@ -17,4 +17,10 @@ class Genre
   def self.genres
     @@genres
   end
+
+  def list_all_genres
+    Genre.genres.each do |genre|
+      puts genre
+    end
+  end
 end
