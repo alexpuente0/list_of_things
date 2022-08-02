@@ -34,10 +34,4 @@ describe Book do
       expect(@book.cover_state).to eql('bad')
     end
   end
-
-  # failing
-  #   describe 'Check if the book can be archived'
-  #   it 'Return true if can be archived or cover state is bad otherwise return false' do
-  #     expect(@book.archived).to eq(true)
-  #   end
 end
