@@ -15,9 +15,9 @@ class Label
   end
 end
 
-test01 = Label.new('generic title', 'red')
+# test01 = Label.new('generic title', 'red')
 
-p test01
-p test01.title
-p test01.color
-p test01.id
+# p test01
+# p test01.title
+# p test01.color
+# p test01.id
