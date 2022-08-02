@@ -1,5 +1,5 @@
 class Genre
-  attr_accessor :name
+  attr_accessor :name, :items
 
   @@genres = []
 
@@ -11,8 +11,7 @@ class Genre
   end
 
   def add_item(item)
-    @items << item unless @items.include? item
-    item.genre = self
+    (@items << item) && item.add_genre(self) unless @items.include? item
   end
 
   def self.genres
