@@ -1,5 +1,13 @@
+
+
+  CREATE TABLE author(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name  varchar,
+    last_name varchar,
+  )
+
 CREATE TABLE game(
-  id INT GENERATED ALWAYS IDENTITY PRIMARY,
+  id INT GENERATED ALWAYS IDENTITY PRIMARY KEY,
   gener INT,
   author INT,
   label INT,
@@ -10,4 +18,4 @@ CREATE TABLE game(
   CONSTRAINT gener_fk FOREIGN KEY(gener) REFERENCES gener(id),
   CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
   CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
-  )
+  );
