@@ -1,14 +1,13 @@
 class Label
-  attr_accessor :title, :color, :id
+  attr_accessor :title, :color
+  attr_reader :id, :items
 
-  def initialize(title, color, _id)
+  def initialize(title, color)
     @id = rand(0..100_000)
     @title = title
     @color = color
     @items = []
   end
-
-  attr_reader :items
 
   def add_item(item)
     @items.push(item) unless @items.include? item
@@ -16,7 +15,7 @@ class Label
   end
 end
 
-# test01 = Label.new('generic title', 'red', 9)
+# test01 = Label.new('generic title', 'red')
 
 # p test01
 # p test01.title

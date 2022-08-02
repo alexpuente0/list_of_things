@@ -22,6 +22,10 @@ class Item
     author.add_item self
   end
 
+  def add_label(label)
+    @label = label
+  end
+
   private
 
   def can_be_archived?
