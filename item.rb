@@ -26,7 +26,7 @@ class Item
     @label = label
   end
 
-private
+  private
 
   def can_be_archived?
     return true if ((DateTime.now - @publish_date) / 365).floor > 10
