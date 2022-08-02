@@ -13,6 +13,19 @@ class Item
     @archived = true if can_be_archived? == true
   end
 
+  def add_genre(genre)
+    @genre = genre
+  end
+
+  def add_author(author)
+    @author = author
+    author.add_item self
+  end
+
+  def add_label(label)
+    @label = label
+  end
+  
   private
 
   def can_be_archived?

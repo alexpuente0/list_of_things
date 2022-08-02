@@ -22,7 +22,7 @@ class Book < Item
   private
 
   def can_be_archived?
-    return true if super == true or @cover_state == 'bad'
+   return true if super || @cover_state == 'bad'
   end
 end
 
@@ -31,16 +31,14 @@ def list_all_books
     print "
       publish_date: #{book.publish_date}
       archived: #{book.archived}
-      publisher : #{book.publisher}
+      publisher: #{book.publisher}
       cover_state: #{book.cover_state}
       "
   end
 end
 
-# test_a = Book.new('genGenre', 'genAuthor', 'genLabel', '24/12/2020', 'genPublisher', 'bad')
-# test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2020', 'genPublisher', 'new')
-# test_c = Book.new('tteht', 'gtggg', 'XXX', '23/12/2020', 'genPublisher', 'bad')
-# test_d = Book.new('3+36', 'hhvvh', 'rererere', '22/12/2000', 'genPublisher', 'missing')
-# test_e = Book.new('trwhstrb', 'erererr', 'qqqq', '21/12/2004', 'genPublisher', 'bad')
+# test_a = Book.new('genGenre', 'genAuthor', 'ddd', '24/12/2000', 'genPublisher', 'bad')
+# test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2000', 'genPublisher', 'good')
+
 
 # list_all_books

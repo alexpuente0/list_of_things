@@ -1,7 +1,8 @@
 class Label
-  attr_accessor :title, :color, :id
+  attr_accessor :title, :color
+  attr_reader :id
 
-  def initialize(title, color, _id)
+  def initialize(title, color, id: nil)
     @id = rand(0..100_000)
     @title = title
     @color = color
@@ -16,7 +17,7 @@ class Label
   end
 end
 
-# test01 = Label.new('generic title', 'red', 9)
+test01 = Label.new('generic title', 'red')
 
 # p test01
 # p test01.title
