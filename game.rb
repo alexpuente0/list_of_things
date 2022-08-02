@@ -9,10 +9,12 @@ class Game < Item
     @author = author
     @label = label
     @multiplayer = multiplayer
-    @last_played_at = last_played_at
+    @last_played_at = Date.parse(last_played_at)
   end
 
   private
 
-  def can_be_archived?; end
+  def can_be_archived?
+    super() && ((DateTime.now - @last_played_at) / 365).floor > 2
+  end
 end
