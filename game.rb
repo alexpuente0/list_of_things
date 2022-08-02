@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
@@ -16,6 +17,18 @@ class Game < Item
 
   def self.games
     @@games
+  end
+
+  def self.save_games
+    json_array = []
+    @@games.each do |g|
+      json_array << { gid: g.gener.id, aid: g.author.id,
+                      lid: g.label.id, pd: g.publish_date, mp: g.multiplayer,
+                      lp_at: g.last_played_at, archived: g.archived }
+    end
+    game_db = File.new('game.json', 'w')
+    game_db.write(JSON.generate(json_array))
+    game_db.close
   end
 
   private
@@ -43,4 +56,8 @@ def add_game(genre, author, label)
   Game.new(genre, author, label,
            publish_date, multiplayer,
            last_played_at, archived)
+end
+
+def save_games
+  Game.save_games
 end
