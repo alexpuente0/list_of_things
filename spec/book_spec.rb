@@ -1,5 +1,5 @@
 require_relative '../book'
-require_relative '../label.rb'
+require_relative '../label'
 
 describe Book do
   before :each do
@@ -13,7 +13,7 @@ describe Book do
     end
 
     it 'inherits from Item class' do
-    expect(@book).to be_kind_of(Item)
+      expect(@book).to be_kind_of(Item)
     end
   end
 
@@ -31,13 +31,13 @@ describe Book do
 
   describe '#cover_state' do
     it 'returns the correct Cover state' do
-     expect(@book.cover_state).to eql('bad')
+      expect(@book.cover_state).to eql('bad')
     end
   end
 
-  #failing
-#   describe 'Check if the book can be archived'
-#   it 'Return true if can be archived or cover state is bad otherwise return false' do
-#     expect(@book.archived).to eq(true)
-#   end
-  end
+  # failing
+  #   describe 'Check if the book can be archived'
+  #   it 'Return true if can be archived or cover state is bad otherwise return false' do
+  #     expect(@book.archived).to eq(true)
+  #   end
+end

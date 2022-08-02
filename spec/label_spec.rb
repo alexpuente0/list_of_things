@@ -31,4 +31,4 @@ describe Label do
 
     expect(@label.items).to include(item)
   end
- end
+end

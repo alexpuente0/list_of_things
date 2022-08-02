@@ -22,7 +22,7 @@ class Book < Item
   private
 
   def can_be_archived?
-   return true if super || @cover_state == 'bad'
+    return true if super || @cover_state == 'bad'
   end
 end
 
@@ -39,6 +39,5 @@ end
 
 # test_a = Book.new('genGenre', 'genAuthor', 'ddd', '24/12/2000', 'genPublisher', 'bad')
 # test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2000', 'genPublisher', 'good')
-
 
 # list_all_books
