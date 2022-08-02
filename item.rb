@@ -13,6 +13,10 @@ class Item
     @archived = true if can_be_archived? == true
   end
 
+  def add_genre(genre)
+    @genre = genre
+  end
+
   private
 
   def can_be_archived?
