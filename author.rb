@@ -1,7 +1,8 @@
-require "json"
+require 'json'
 class Author
   attr_accessor :first_name, :last_name
   attr_reader :id
+
   @@authors = []
 
   def initialize(first_name, last_name, id: nil)
@@ -24,15 +25,16 @@ class Author
   end
 
   def self.save_authors
-    json_array=[]
+    json_array = []
     @@authors.each do |a|
-      json_array << [ a.id,a.first_name, a.last_name]
+      json_array << [a.id, a.first_name, a.last_name]
     end
     p json_array
-    author_db=File.new('author.json','w')
+    author_db = File.new('author.json', 'w')
     author_db.write(JSON.generate(json_array))
     author_db.close
   end
+
   private
 
   def id_taken?(id)
@@ -50,9 +52,9 @@ def save_authors
   Author.save_authors
 end
 
-author1 = Author.new('Tadesse', 'Alemayehu')
-author2 = Author.new('Tadesse1', 'Alemayehu1')
-author3 = Author.new('Tadesse3', 'Alemayehu3')
-author2 = Author.new('Tadesse1', 'Alemayehu1',id: 12)
-list_all_authors
-save_authors
+# author1 = Author.new('Tadesse', 'Alemayehu')
+# author2 = Author.new('Tadesse1', 'Alemayehu1')
+# author3 = Author.new('Tadesse3', 'Alemayehu3')
+# author2 = Author.new('Tadesse1', 'Alemayehu1',id: 12)
+# list_all_authors
+# save_authors
