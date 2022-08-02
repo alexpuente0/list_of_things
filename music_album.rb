@@ -1,7 +1,10 @@
 require './item'
+require_relative './genre'
 
-class MusicAlbun < Item
+class MusicAlbum < Item
   attr_accessor :on_spotify
+
+  @@albums = []
 
   def initialize(genre, author, label, publish_date, archived, on_spotify)
     super(publish_date, archived: archived)
@@ -9,11 +12,34 @@ class MusicAlbun < Item
     @author = author
     @label = label
     @on_spotify = on_spotify
+    @@albums << self
+  end
+
+  def self.albums
+    @@albums
+  end
+
+  def album_list
+    MusicAlbum.albums.each do |album|
+      puts album
+    end
+  end
+
+  def add_album(genre, author, label)
+    p 'Insert published date: '
+    publish_date = gets.chomp
+    p 'archived [y/n]: '
+    archived = gets.chomp.downcase == 'y'
+    p 'Is this song available on Spotify [y/n]: '
+    on_spotify = gets.chomp.downcase == 'y'
+
+    MusicAlbum.new(genre, author, label,
+                   publish_date, archived, on_spotify)
   end
 
   private
 
   def can_be_archived?
-    super() && @on_spotify == true
+    super() && @on_spotify
   end
 end
