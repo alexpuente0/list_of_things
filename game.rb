@@ -30,3 +30,17 @@ def list_all_games
     puts "Title: #{game.label.title}. color: #{game.label.color}"
   end
 end
+
+def add_game(genre, author, label)
+  puts "pleas enter publish data :"
+  publish_date=gets.chomp,
+  puts "Multi player :"
+  multiplayer=gets.chomp,
+  puts "Last played at :"
+  last_played_at=gets.chomp,
+  puts "archived: [Y/N] :"
+  archived=gets.chomp.upcase=='Y':true:false
+  Game.new(genre, author, label,
+    publish_date, multiplayer,
+    last_played_at, archived)
+end
