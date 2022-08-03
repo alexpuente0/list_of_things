@@ -1,6 +1,6 @@
-require_relative "genre"
-require_relative "label"
-require_relative "author"
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
 require 'json'
 require './item'
 require_relative './genre'
@@ -41,10 +41,8 @@ class MusicAlbum < Item
       puts "Author name: #{album.author.first_name},
             On spotify: #{album.on_spotify},
             Genre: #{album.genre.name}"
-
     end
   end
-
 
   private
 
@@ -57,24 +55,21 @@ def list_all_music_albums
   MusicAlbum.album_list
 end
 
-
-
 def add_album(genre, author, label)
-    p 'Insert published date: '
-    publish_date = gets.chomp
-    p 'archived [y/n]: '
-    archived = gets.chomp.downcase == 'y'
-    p 'Is this song available on Spotify [y/n]: '
-    on_spotify = gets.chomp.downcase == 'y'
+  p 'Insert published date: '
+  publish_date = gets.chomp
+  p 'archived [y/n]: '
+  archived = gets.chomp.downcase == 'y'
+  p 'Is this song available on Spotify [y/n]: '
+  on_spotify = gets.chomp.downcase == 'y'
 
-    MusicAlbum.new(genre, author, label,
-                   publish_date, archived, on_spotify)
+  MusicAlbum.new(genre, author, label,
+                 publish_date, archived, on_spotify)
 end
 
 def save_albums
   MusicAlbum.save_albums
 end
-
 
 def load_albums
   return [] unless File.exist?('./album.json')
@@ -88,9 +83,11 @@ def load_albums
   read_json.each do |album|
     loaded_albums.push(
       MusicAlbum.new(
-      Genre.genres.select {|genre| album['gid']==genre.id}[0],
-      Author.authors.select {|author| album['aid']==author.id}[0],
-      Label.labels.select {|label| album['lid']==label.id}[0],
-      album['pd'], album['archived'], album['on_spotify']))
+        Genre.genres.select { |genre| album['gid'] == genre.id }[0],
+        Author.authors.select { |author| album['aid'] == author.id }[0],
+        Label.labels.select { |label| album['lid'] == label.id }[0],
+        album['pd'], album['archived'], album['on_spotify']
+      )
+    )
   end
 end

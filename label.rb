@@ -6,8 +6,8 @@ class Label
 
   @@labels = []
 
-  def initialize(id=nil,title, color)
-    @id = id||rand(0..100_000)
+  def initialize(id = nil, title, color)
+    @id = id || rand(0..100_000)
     @title = title
     @color = color
     @items = []
@@ -22,7 +22,6 @@ class Label
     @items.push(item) unless @items.include? item
     item.label = self
   end
-
 end
 
 def self.save_labels
@@ -64,9 +63,6 @@ def load_labels
   loaded_labels = []
 
   read_json.each do |label|
-    loaded_labels.push(Label.new(id=label['id'],label['title'], label['color']))
+    loaded_labels.push(Label.new(id = label['id'], label['title'], label['color']))
   end
 end
-
-
-

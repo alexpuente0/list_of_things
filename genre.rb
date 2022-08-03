@@ -5,18 +5,18 @@ class Genre
 
   @@genres = []
 
-  def initialize(id=nil,name)
-    @id = id||rand(0..100_000)
+  def initialize(id = nil, name)
+    @id = id || rand(0..100_000)
     @name = name
     @items = []
     @@genres << self
   end
-# use setter for the genre
+  # use setter for the genre
 
   def self.save_genres
     json_array = []
     @@genres.each do |e|
-      json_array << {id: e.id, name: e.name}
+      json_array << { id: e.id, name: e.name }
     end
     genre_db = File.new('genre.json', 'w')
     genre_db.write(JSON.generate(json_array))
@@ -24,7 +24,7 @@ class Genre
   end
 
   def add_item(item)
-    (@items << item) && item.genre=self unless @items.include? item
+    (@items << item) && item.genre = self unless @items.include? item
   end
 
   def self.genres
@@ -33,20 +33,18 @@ class Genre
 
   def self.list_all_genres
     Genre.genres.each do |genre|
-
       puts "Id: #{genre.id}, Name: #{genre.name}"
     end
   end
 end
 
 def list_all_genres
-   Genre.list_all_genres
+  Genre.list_all_genres
 end
 
 def save_genres
   Genre.save_genres
 end
-
 
 def load_geners
   return [] unless File.exist?('./genre.json')
@@ -58,8 +56,6 @@ def load_geners
   loaded_genres = []
 
   read_json.each do |genre|
-    loaded_genres.push(Genre.new(id=genre['id'],genre['name']))
+    loaded_genres.push(Genre.new(id = genre['id'], genre['name']))
   end
 end
-
-

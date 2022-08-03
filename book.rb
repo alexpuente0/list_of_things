@@ -1,6 +1,6 @@
-require_relative "genre"
-require_relative "label"
-require_relative "author"
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
 require 'json'
 require_relative './item'
 
@@ -82,20 +82,22 @@ def load_books
   read_json.each do |book|
     loaded_books.push(
       Book.new(
-      Genre.genres.select {|genre| book['genre']==genre.id}[0],
-      Author.authors.select {|author| book['author']==author.id}[0],
-      Label.labels.select {|label| book['label']==label.id}[0],
-      book['publish_dt'], book['publisher'], book['cover_st']))
+        Genre.genres.select { |genre| book['genre'] == genre.id }[0],
+        Author.authors.select { |author| book['author'] == author.id }[0],
+        Label.labels.select { |label| book['label'] == label.id }[0],
+        book['publish_dt'], book['publisher'], book['cover_st']
+      )
+    )
   end
 end
 
 def add_book(genre, author, label)
-    puts 'Insert published date: '
-      publish_date = gets.chomp
-    puts 'Insert publisher: '
-      publisher = gets.chomp
-    puts 'Insert cover state:  '
-      cover_state = gets.chomp
-    Book.new(genre, author, label,
-                   publish_date, publisher, cover_state)
+  puts 'Insert published date: '
+  publish_date = gets.chomp
+  puts 'Insert publisher: '
+  publisher = gets.chomp
+  puts 'Insert cover state:  '
+  cover_state = gets.chomp
+  Book.new(genre, author, label,
+           publish_date, publisher, cover_state)
 end

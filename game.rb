@@ -1,6 +1,6 @@
-require_relative "genre"
-require_relative "label"
-require_relative "author"
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
 require 'json'
 require_relative 'item'
 class Game < Item
@@ -11,7 +11,7 @@ class Game < Item
                  multiplayer, last_played_at, archived)
     super(publish_date, archived: archived)
     @genre = genre
-    @author= author
+    @author = author
     @label = label
     @multiplayer = multiplayer.upcase == 'Y'
     @last_played_at = Date.parse(last_played_at)
@@ -40,6 +40,7 @@ class Game < Item
     super() && ((DateTime.now - @last_played_at) / 365).floor > 2
   end
 end
+
 # make the llist_all_games an instance method so we can call it without instantiating the music class object
 def self.list_all_games
   Game.games.each do |game|
@@ -70,7 +71,7 @@ def save_games
 end
 
 def list_all_games
-   Game.list_all_games
+  Game.list_all_games
 end
 
 def load_games
@@ -85,9 +86,11 @@ def load_games
   read_json.each do |game|
     loaded_games.push(
       Game.new(
-      Genre.genres.select {|genre| game['gid']==genre.id}[0],
-      Author.authors.select {|author| game['aid']==author.id}[0],
-      Label.labels.select {|label| game['lid']==label.id}[0],
-      game['pd'], game['mp']?'Y':'N', game['lp_at'], game['archived']))
+        Genre.genres.select { |genre| game['gid'] == genre.id }[0],
+        Author.authors.select { |author| game['aid'] == author.id }[0],
+        Label.labels.select { |label| game['lid'] == label.id }[0],
+        game['pd'], game['mp'] ? 'Y' : 'N', game['lp_at'], game['archived']
+      )
+    )
   end
 end

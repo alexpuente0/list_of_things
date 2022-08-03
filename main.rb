@@ -1,4 +1,4 @@
-require_relative "app"
+require_relative 'app'
 def main
   puts "Welcome to my catalog!\n\n"
   response = nil
@@ -6,7 +6,7 @@ def main
   load_everything
 
   while response != '10'
-    puts "*************************************************"
+    puts '*************************************************'
     puts "Please choose an option by entering a number\n\n"
     puts '1-List all books'
     puts '2-List all music albums'
@@ -18,7 +18,7 @@ def main
     puts '8-Add a music album'
     puts '9-Add a game'
     puts 'type 10 to exit'
-    puts "*************************************************"
+    puts '*************************************************'
 
     response = gets.chomp
 
@@ -32,17 +32,17 @@ def main
     when '4'
       list_all_genres
     when '5'
-     list_all_labels
+      list_all_labels
     when '6'
       list_all_authors
     when '7'
-      genre, author, label=parameters("book")
+      genre, author, label = parameters('book')
       add_book(genre, author, label)
     when '8'
-      genre, author, label=parameters("album")
+      genre, author, label = parameters('album')
       add_album(genre, author, label)
     when '9'
-      genre, author, label=parameters("game")
+      genre, author, label = parameters('game')
       add_game(genre, author, label)
     when '10'
       save_everything

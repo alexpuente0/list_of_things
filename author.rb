@@ -5,7 +5,7 @@ class Author
 
   @@authors = []
 
-  def initialize(id=nil,first_name, last_name)
+  def initialize(id = nil, first_name, last_name)
     id ||= rand(0..100_000)
     throw 'Id is taken: pleas try again' if id_taken?(id)
     @items = []
@@ -27,7 +27,7 @@ class Author
   def self.save_authors
     json_array = []
     @@authors.each do |a|
-      json_array << {id: a.id, first_name: a.first_name, last_name: a.last_name}
+      json_array << { id: a.id, first_name: a.first_name, last_name: a.last_name }
     end
     author_db = File.new('author.json', 'w')
     author_db.write(JSON.generate(json_array))
@@ -51,7 +51,6 @@ def save_authors
   Author.save_authors
 end
 
-
 def load_authors
   return [] unless File.exist?('./author.json')
 
@@ -62,7 +61,6 @@ def load_authors
   loaded_authors = []
 
   read_json.each do |author|
-    loaded_authors.push(Author.new(id=author['id'],author['first_name'], author['last_name']))
+    loaded_authors.push(Author.new(id = author['id'], author['first_name'], author['last_name']))
   end
 end
-
