@@ -31,6 +31,13 @@ end
 #method to display list of labels
 def list_all_label
   Label.labels.each do |label|
-    puts "title: #{label.title}. Last Name: #{label.color}"
+    puts "Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
   end
 end
+
+
+Label.new('Death Row Records', 'red')
+Label.new('I.R.S.', 'black')
+Label.new('Sub Pop', 'red')
+Label.new('Burger Records', 'green')
+Label.new('Motown', 'black')

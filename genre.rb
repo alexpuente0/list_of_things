@@ -1,6 +1,6 @@
 class Genre
   attr_accessor :name, :items
-
+  attr_reader :id
   @@genres = []
 
   def initialize(name)
@@ -20,7 +20,8 @@ class Genre
 # make the list_all_genres an instance method so we can call it without instantiating the music class object
   def self.list_all_genres
     Genre.genres.each do |genre|
-      puts genre
+# update the put statement
+      puts "Id: #{genre.id}, Name: #{genre.name}"
     end
   end
 end
@@ -31,3 +32,12 @@ creating a method just to make is concistent.
 def list_all_genres
    Genre.list_all_genres
 end
+
+# initial genrs
+Genre.new('Fantasy')
+Genre.new('Comedy')
+Genre.new('Fairy Tales')
+Genre.new('Legends')
+Genre.new('Scientific')
+Genre.new('Horror')
+Genre.new('Mystery')

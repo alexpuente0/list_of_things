@@ -44,7 +44,7 @@ end
 
 def list_all_authors
   Author.authors.each do |author|
-    puts "First Name: #{author.first_name}. Last Name: #{author.last_name}"
+    puts "Id: #{author.id}, First Name: #{author.first_name}, Last Name: #{author.last_name}"
   end
 end
 
@@ -52,9 +52,9 @@ def save_authors
   Author.save_authors
 end
 
-# author1 = Author.new('Tadesse', 'Alemayehu')
-# author2 = Author.new('Tadesse1', 'Alemayehu1')
-# author3 = Author.new('Tadesse3', 'Alemayehu3')
-# author2 = Author.new('Tadesse1', 'Alemayehu1',id: 12)
+Author.new('Tadesse', 'Alemayehu')
+Author.new('Tadesse1', 'Alemayehu1')
+Author.new('Tadesse3', 'Alemayehu3')
+Author.new('Tadesse1', 'Alemayehu1',id: 12)
 # list_all_authors
 # save_authors
