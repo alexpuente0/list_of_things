@@ -12,10 +12,10 @@ class MusicAlbum < Item
   @@albums = []
 
   def initialize(genre, author, label, publish_date, archived, on_spotify)
-    super(publish_date, archived: archived)
     @genre = genre
     @author = author
     @label = label
+    super(publish_date, archived: archived)
     @on_spotify = on_spotify
     @@albums << self
   end

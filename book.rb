@@ -11,10 +11,10 @@ class Book < Item
   @@books = []
 
   def initialize(genre, author, label, publish_date, publisher, cover_state)
-    super(publish_date)
     @genre = genre
     @author = author
     @label = label
+    super(publish_date)
     @publisher = publisher
     @cover_state = cover_state
     @@books << self
