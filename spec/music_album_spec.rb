@@ -5,7 +5,7 @@ require 'date'
 describe MusicAlbum do
   before :each do
     @genre = Genre.new('Rock')
-    @album = MusicAlbum.new(@genre, 'Bon Jovi', 'label', '2018-12-05', false, false)
+    @album = MusicAlbum.new(@genre, 'Bon Jovi', 'label', '2018-12-05', false)
   end
 
   describe 'music' do

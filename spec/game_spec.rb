@@ -8,7 +8,7 @@ describe Author do
       @gener = double('Gener')
       @label = double('label')
       @game = Game.new(@gener, @author, @label, '2000-12-05',
-                       2, '2015-12-05', false)
+                       2, '2015-12-05')
     end
     it 'assert author is instance of Author' do
       expect(@game.author).to be_an_instance_of(Author)

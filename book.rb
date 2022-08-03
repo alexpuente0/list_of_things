@@ -39,7 +39,7 @@ class Book < Item
   private
 
   def can_be_archived?
-    return true if super || @cover_state == 'bad'
+    !(super() || @cover_state == 'bad')
   end
 end
 
@@ -85,7 +85,7 @@ def add_book(genre, author, label)
   publish_date = gets.chomp
   puts 'Insert publisher: '
   publisher = gets.chomp
-  puts 'Insert cover state:  '
+  puts 'Insert cover state: [good/bad] '
   cover_state = gets.chomp
   Book.new(genre, author, label,
            publish_date, publisher, cover_state)

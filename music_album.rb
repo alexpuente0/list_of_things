@@ -3,6 +3,7 @@ require_relative 'label'
 require_relative 'author'
 require 'json'
 require './item'
+require 'pry'
 require_relative './genre'
 
 class MusicAlbum < Item
@@ -11,12 +12,12 @@ class MusicAlbum < Item
 
   @@albums = []
 
-  def initialize(genre, author, label, publish_date, archived, on_spotify)
+  def initialize(genre, author, label, publish_date, on_spotify)
     @genre = genre
     @author = author
     @label = label
-    super(publish_date, archived: archived)
     @on_spotify = on_spotify
+    super(publish_date)
     @@albums << self
   end
 
@@ -40,13 +41,15 @@ class MusicAlbum < Item
     MusicAlbum.albums.each do |album|
       puts "Author name: #{album.author.first_name},
             On spotify: #{album.on_spotify},
-            Genre: #{album.genre.name}"
+            Genre: #{album.genre.name},
+            Archived: #{album.archived}"
     end
   end
 
   private
 
   def can_be_archived?
+    binding.pry
     super() && @on_spotify
   end
 end
@@ -58,13 +61,11 @@ end
 def add_album(genre, author, label)
   p 'Insert published date: '
   publish_date = gets.chomp
-  p 'archived [y/n]: '
-  archived = gets.chomp.downcase == 'y'
   p 'Is this song available on Spotify [y/n]: '
   on_spotify = gets.chomp.downcase == 'y'
 
   MusicAlbum.new(genre, author, label,
-                 publish_date, archived, on_spotify)
+                 publish_date, on_spotify)
 end
 
 def save_albums
@@ -86,7 +87,7 @@ def load_albums
         Genre.genres.select { |genre| album['gid'] == genre.id }[0],
         Author.authors.select { |author| album['aid'] == author.id }[0],
         Label.labels.select { |label| album['lid'] == label.id }[0],
-        album['pd'], album['archived'], album['on_spotify']
+        album['pd'], album['on_spotify']
       )
     )
   end

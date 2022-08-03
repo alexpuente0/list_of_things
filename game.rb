@@ -8,11 +8,11 @@ class Game < Item
 
   @@games = []
   def initialize(genre, author, label, publish_date,
-                 multiplayer, last_played_at, archived)
+                 multiplayer, last_played_at)
     @genre = genre
     @author = author
     @label = label
-    super(publish_date, archived: archived)
+    super(publish_date)
     @multiplayer = multiplayer.upcase == 'Y'
     @last_played_at = Date.parse(last_played_at)
     @@games << self
@@ -27,7 +27,7 @@ class Game < Item
     @@games.each do |g|
       json_array << { gid: g.genre.id, aid: g.author.id,
                       lid: g.label.id, pd: g.publish_date, mp: g.multiplayer,
-                      lp_at: g.last_played_at, archived: g.archived }
+                      lp_at: g.last_played_at }
     end
     game_db = File.new('game.json', 'w')
     game_db.write(JSON.generate(json_array))
@@ -59,11 +59,9 @@ def add_game(genre, author, label)
   multiplayer = gets.chomp
   puts 'Last played at :'
   last_played_at = gets.chomp
-  puts 'archived: [Y/N] :'
-  archived = gets.chomp.upcase == 'Y'
   Game.new(genre, author, label,
            publish_date, multiplayer,
-           last_played_at, archived)
+           last_played_at)
 end
 
 def save_games
@@ -89,7 +87,7 @@ def load_games
         Genre.genres.select { |genre| game['gid'] == genre.id }[0],
         Author.authors.select { |author| game['aid'] == author.id }[0],
         Label.labels.select { |label| game['lid'] == label.id }[0],
-        game['pd'], game['mp'] ? 'Y' : 'N', game['lp_at'], game['archived']
+        game['pd'], game['mp'] ? 'Y' : 'N', game['lp_at']
       )
     )
   end
