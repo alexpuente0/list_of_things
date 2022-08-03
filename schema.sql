@@ -19,3 +19,21 @@ CREATE TABLE game(
   CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
   CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
   );
+
+  CREATE TABLE genre(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name  TEXT NOT NULL,
+  )
+
+CREATE TABLE music_album(
+  id INT GENERATED ALWAYS IDENTITY PRIMARY KEY,
+  gener INT,
+  author INT,
+  label INT,
+  publish_date DATE,
+  archived BOOLEAN,
+  on_soptify BOOLEAN,
+  CONSTRAINT gener_fk FOREIGN KEY(gener) REFERENCES gener(id),
+  CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
+  CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
+  );
