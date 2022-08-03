@@ -37,3 +37,24 @@ CREATE TABLE music_album(
   CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
   CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
   );
+
+CREATE TABLE label(
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title TEXT,
+  color TEXT,
+);
+
+CREATE TABLE books(
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  genre_id INT,
+  author_id INT,
+  label_id INT,
+  publish_date DATE,
+  publisher TEXT,
+  cover_state TEXT,
+  archived BOOLEAN DEFAULT false,
+  CONSTRAINT genre_fk FOREIGN KEY(genre) REFERENCES genre(id),
+  CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
+  CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
+);
+
