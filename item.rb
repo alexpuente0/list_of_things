@@ -12,18 +12,20 @@ class Item
   def move_to_archive
     @archived = true if can_be_archived? == true
   end
-
-  def add_genre(genre)
+# add setter with an add_item method call
+  def genre=(genre)
     @genre = genre
+    genre.add_item self
   end
 
-  def add_author(author)
+  def author=(author)
     @author = author
     author.add_item self
   end
 
-  def add_label(label)
+  def label=(label)
     @label = label
+    label.add_item self
   end
 
   private

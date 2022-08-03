@@ -9,9 +9,9 @@ class Genre
     @items = []
     @@genres << self
   end
-
+# use setter for the gener
   def add_item(item)
-    (@items << item) && item.add_genre(self) unless @items.include? item
+    (@items << item) && item.gener=self unless @items.include? item
   end
 
   def self.genres

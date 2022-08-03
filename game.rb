@@ -8,7 +8,7 @@ class Game < Item
                  multiplayer, last_played_at, archived)
     super(publish_date, archived: archived)
     @genre = genre
-    add_author(author)
+    @author= author
     @label = label
     @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at)
