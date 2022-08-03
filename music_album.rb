@@ -18,8 +18,8 @@ class MusicAlbum < Item
   def self.albums
     @@albums
   end
-
-  def album_list
+# make the album list an instance method so we can call it without instantiating the music class object
+  def self.album_list
     MusicAlbum.albums.each do |album|
       puts album
     end
@@ -42,4 +42,10 @@ class MusicAlbum < Item
   def can_be_archived?
     super() && @on_spotify
   end
+end
+=begin add list album method
+creating a method just to make is concistent.
+=end
+def list_all_music_albums
+  MusicAlbum.album_list
 end

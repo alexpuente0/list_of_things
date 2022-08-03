@@ -1,3 +1,9 @@
+require_relative "book"
+require_relative "music_album"
+require_relative "game"
+require_relative "genre"
+require_relative "label"
+require_relative "author"
 def main
   puts "Welcome to my catalog!\n\n"
   response = nil
@@ -18,17 +24,17 @@ def main
 
     case response
     when '1'
-      p 'not implemented yet'
+      list_all_books
     when '2'
-      p '2 not implemented yet'
+      list_all_music_albums
     when '3'
-      p '3 not implemented yet'
+      list_all_games
     when '4'
-      p ' 4 not implemented yet'
+      list_all_genres
     when '5'
-      p '5not implemented yet'
+     list_all_label
     when '6'
-      p '6not implemented yet'
+      list_all_authors
     when '7'
       p '7not implemented yet'
     when '8'

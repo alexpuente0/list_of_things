@@ -17,10 +17,17 @@ class Genre
   def self.genres
     @@genres
   end
-
-  def list_all_genres
+# make the list_all_genres an instance method so we can call it without instantiating the music class object
+  def self.list_all_genres
     Genre.genres.each do |genre|
       puts genre
     end
   end
+end
+
+=begin add list album method
+creating a method just to make is concistent.
+=end
+def list_all_genres
+   Genre.list_all_genres
 end

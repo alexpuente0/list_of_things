@@ -37,8 +37,8 @@ class Game < Item
     super() && ((DateTime.now - @last_played_at) / 365).floor > 2
   end
 end
-
-def list_all_games
+# make the llist_all_games an instance method so we can call it without instantiating the music class object
+def self.list_all_games
   Game.games.each do |game|
     puts "Title: #{game.label.title}. color: #{game.label.color}"
   end
@@ -60,4 +60,11 @@ end
 
 def save_games
   Game.save_games
+end
+
+=begin add list album method
+creating a method just to make is concistent.
+=end
+def list_all_games
+   Game.list_all_games
 end
