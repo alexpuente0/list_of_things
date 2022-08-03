@@ -34,5 +34,6 @@ end
 def load_everything
   load_labels
   load_geners
+  load_authors
   load_books
 end

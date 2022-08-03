@@ -5,7 +5,7 @@ class Author
 
   @@authors = []
 
-  def initialize(first_name, last_name, id: nil)
+  def initialize(id=nil,first_name, last_name)
     id ||= rand(0..100_000)
     throw 'Id is taken: pleas try again' if id_taken?(id)
     @items = []
@@ -27,9 +27,8 @@ class Author
   def self.save_authors
     json_array = []
     @@authors.each do |a|
-      json_array << [a.id, a.first_name, a.last_name]
+      json_array << {id: a.id, first_name: a.first_name, last_name: a.last_name}
     end
-    p json_array
     author_db = File.new('author.json', 'w')
     author_db.write(JSON.generate(json_array))
     author_db.close
@@ -52,8 +51,23 @@ def save_authors
   Author.save_authors
 end
 
-Author.new('Tadesse', 'Alemayehu')
-Author.new('Aurturo', 'Hermida')
-Author.new('Alex', 'Puente')
+
+def load_authors
+  return [] unless File.exist?('./author.json')
+
+  file = File.open('./author.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_authors = []
+
+  read_json.each do |author|
+    loaded_authors.push(Author.new(id=author['id'],author['first_name'], author['last_name']))
+  end
+end
+
+# Author.new('Tadesse', 'Alemayehu')
+# Author.new('Aurturo', 'Hermida')
+# Author.new('Alex', 'Puente')
 # list_all_authors
 # save_authors
