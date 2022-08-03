@@ -18,8 +18,8 @@ def main
     puts '5-List all labels '
     puts '6-List all authors '
     puts '7-Add a book'
-    puts '9-Add a game'
     puts '8-Add a music album'
+    puts '9-Add a game'
     puts 'type 10 to exit'
     puts "*************************************************"
 
@@ -40,10 +40,13 @@ def main
       list_all_authors
     when '7'
       p '7not implemented yet'
+      # add_book(genre, author, label)
     when '8'
       p '8not implemented yet'
+      # add_album(genre, author, label)
     when '9'
       p '9not implemented yet'
+      # add_game(genre, author, label)
     when '10'
       exit
     end

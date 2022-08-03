@@ -41,3 +41,16 @@ end
 # test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2000', 'genPublisher', 'good')
 
 # list_all_books
+
+# add add book method
+
+def add_book(genre, author, label)
+    puts 'Insert published date: '
+      publish_date = gets.chomp
+    puts 'Insert publisher: '
+      publisher = gets.chomp
+    puts 'Insert cover state:  '
+      cover_state = gets.chomp
+    Book.new(genre, author, label,
+                   publish_date, publisher, cover_state)
+end

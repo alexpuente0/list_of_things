@@ -25,17 +25,6 @@ class MusicAlbum < Item
     end
   end
 
-  def add_album(genre, author, label)
-    p 'Insert published date: '
-    publish_date = gets.chomp
-    p 'archived [y/n]: '
-    archived = gets.chomp.downcase == 'y'
-    p 'Is this song available on Spotify [y/n]: '
-    on_spotify = gets.chomp.downcase == 'y'
-
-    MusicAlbum.new(genre, author, label,
-                   publish_date, archived, on_spotify)
-  end
 
   private
 
@@ -48,4 +37,18 @@ creating a method just to make is concistent.
 =end
 def list_all_music_albums
   MusicAlbum.album_list
+end
+
+# I have taken this method out of the class
+
+def add_album(genre, author, label)
+    p 'Insert published date: '
+    publish_date = gets.chomp
+    p 'archived [y/n]: '
+    archived = gets.chomp.downcase == 'y'
+    p 'Is this song available on Spotify [y/n]: '
+    on_spotify = gets.chomp.downcase == 'y'
+
+    MusicAlbum.new(genre, author, label,
+                   publish_date, archived, on_spotify)
 end
