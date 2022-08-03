@@ -60,6 +60,3 @@ end
 def save_albums
   MusicAlbum.save_albums
 end
-
-album_list
-save_albums

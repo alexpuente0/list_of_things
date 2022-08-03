@@ -44,6 +44,3 @@ end
 def save_genres
   Genre.save_genres
 end
-
-list_all_genres
-save_genres
