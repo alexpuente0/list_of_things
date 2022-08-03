@@ -36,4 +36,5 @@ def load_everything
   load_geners
   load_authors
   load_books
+  load_album
 end

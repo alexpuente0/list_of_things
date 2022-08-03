@@ -1,3 +1,6 @@
+require_relative "genre"
+require_relative "label"
+require_relative "author"
 require 'json'
 require './item'
 require_relative './genre'
@@ -38,7 +41,7 @@ class MusicAlbum < Item
       puts "Author name: #{album.author.first_name},
             On spotify: #{album.on_spotify},
             Genre: #{album.genre.name}"
-      
+
     end
   end
 
@@ -72,4 +75,24 @@ end
 
 def save_albums
   MusicAlbum.save_albums
+end
+
+
+def load_album
+  return [] unless File.exist?('./album.json')
+
+  file = File.open('./album.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_books = []
+
+  read_json.each do |album|
+    loaded_books.push(
+      MusicAlbum.new(
+      Genre.genres.select {|genre| album['gid']==genre.id}[0],
+      Author.authors.select {|author| album['aid']==author.id}[0],
+      Label.labels.select {|label| album['lid']==label.id}[0],
+      album['pd'], album['archived'], album['on_spotify']))
+  end
 end
