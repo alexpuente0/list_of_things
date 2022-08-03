@@ -40,8 +40,8 @@ def main
       genre, author, label=parameters("album")
       add_album(genre, author, label)
     when '9'
-      p '9not implemented yet'
-      # add_game(genre, author, label)
+      genre, author, label=parameters("game")
+      add_game(genre, author, label)
     when '10'
       exit
     end

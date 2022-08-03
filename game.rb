@@ -10,7 +10,7 @@ class Game < Item
     @genre = genre
     @author= author
     @label = label
-    @multiplayer = multiplayer
+    @multiplayer = multiplayer.upcase == 'Y'
     @last_played_at = Date.parse(last_played_at)
     @@games << self
   end
@@ -40,14 +40,18 @@ end
 # make the llist_all_games an instance method so we can call it without instantiating the music class object
 def self.list_all_games
   Game.games.each do |game|
-    puts "Title: #{game.label.title}. color: #{game.label.color}"
+    puts "
+    Multiplayer: #{game.multiplayer},
+    Label: #{game.label.title},
+    Last Played on: #{game.last_played_at}
+    "
   end
 end
 
 def add_game(genre, author, label)
   puts 'pleas enter publish data :'
   publish_date = gets.chomp
-  puts 'Multi player :'
+  puts 'Multi player? [Y/N] :'
   multiplayer = gets.chomp
   puts 'Last played at :'
   last_played_at = gets.chomp
