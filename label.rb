@@ -6,7 +6,7 @@ class Label
 
   @@labels = []
 
-  def initialize(id = nil, title, color)
+  def initialize(title, color, id = nil)
     @id = id || rand(0..100_000)
     @title = title
     @color = color
@@ -36,15 +36,6 @@ end
 
 def list_all_labels
   Label.labels.each do |label|
-    print "
-      title: #{label.title}
-      color: #{label.color}
-      "
-  end
-end
-
-def list_all_labels
-  Label.labels.each do |label|
     puts "Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
   end
 end
@@ -63,6 +54,6 @@ def load_labels
   loaded_labels = []
 
   read_json.each do |label|
-    loaded_labels.push(Label.new(id = label['id'], label['title'], label['color']))
+    loaded_labels.push(Label.new(label['title'], label['color'], label['id']))
   end
 end

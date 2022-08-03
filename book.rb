@@ -55,17 +55,6 @@ def list_all_books
   end
 end
 
-def add_book(genre, author, label)
-  puts 'Insert published date: '
-  publish_date = gets.chomp
-  puts 'Insert publisher: '
-  publisher = gets.chomp
-  puts 'Insert cover state:  '
-  cover_state = gets.chomp
-  Book.new(genre, author, label,
-           publish_date, publisher, cover_state)
-end
-
 def save_books
   Book.save_books
 end

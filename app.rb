@@ -15,9 +15,9 @@ def parameters(item_name)
   puts "select the 'id' for label of the #{item_name}"
   list_all_labels
   label_id = gets.chomp.to_i
-  genre = Genre.genres.select { |genre| genre.id == genre_id }
-  author = Author.authors.select { |author| author.id == author_id }
-  label = Label.labels.select { |label| label.id == label_id }
+  genre = Genre.genres.select { |gen| gen.id == genre_id }
+  author = Author.authors.select { |aut| aut.id == author_id }
+  label = Label.labels.select { |lab| lab.id == label_id }
   throw "we couldn't found seleted profiles with provided id" unless genre && author && label
   [genre[0], author[0], label[0]]
 end

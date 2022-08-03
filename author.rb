@@ -5,7 +5,7 @@ class Author
 
   @@authors = []
 
-  def initialize(id = nil, first_name, last_name)
+  def initialize(first_name, last_name, id = nil)
     id ||= rand(0..100_000)
     throw 'Id is taken: pleas try again' if id_taken?(id)
     @items = []
@@ -61,6 +61,6 @@ def load_authors
   loaded_authors = []
 
   read_json.each do |author|
-    loaded_authors.push(Author.new(id = author['id'], author['first_name'], author['last_name']))
+    loaded_authors.push(Author.new(author['first_name'], author['last_name'], author['id']))
   end
 end

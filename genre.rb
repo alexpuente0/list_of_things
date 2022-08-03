@@ -5,7 +5,7 @@ class Genre
 
   @@genres = []
 
-  def initialize(id = nil, name)
+  def initialize(name, id = nil)
     @id = id || rand(0..100_000)
     @name = name
     @items = []
@@ -56,6 +56,6 @@ def load_geners
   loaded_genres = []
 
   read_json.each do |genre|
-    loaded_genres.push(Genre.new(id = genre['id'], genre['name']))
+    loaded_genres.push(Genre.new(genre['name'], genre['id']))
   end
 end
