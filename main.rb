@@ -1,9 +1,4 @@
-require_relative "book"
-require_relative "music_album"
-require_relative "game"
-require_relative "genre"
-require_relative "label"
-require_relative "author"
+require_relative "app"
 def main
   puts "Welcome to my catalog!\n\n"
   response = nil
@@ -35,12 +30,12 @@ def main
     when '4'
       list_all_genres
     when '5'
-     list_all_label
+     list_all_labels
     when '6'
       list_all_authors
     when '7'
-      p '7not implemented yet'
-      # add_book(genre, author, label)
+      genre, author, label=parameters("book")
+      add_book(genre, author, label)
     when '8'
       p '8not implemented yet'
       # add_album(genre, author, label)

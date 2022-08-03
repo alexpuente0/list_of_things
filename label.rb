@@ -53,18 +53,12 @@ end
 # p test01.id
 
 #method to display list of labels
-def list_all_label
+def list_all_labels
   Label.labels.each do |label|
     puts "Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
   end
 end
 
-
-Label.new('Death Row Records', 'red')
-Label.new('I.R.S.', 'black')
-Label.new('Sub Pop', 'red')
-Label.new('Burger Records', 'green')
-Label.new('Motown', 'black')
 # list_all_labels
 
 # def add_label
@@ -92,3 +86,11 @@ def load_labels
     loaded_labels.push(Label.new(label['title'], label['color']))
   end
 end
+
+
+
+Label.new('Death Row Records', 'red')
+Label.new('I.R.S.', 'black')
+Label.new('Sub Pop', 'red')
+Label.new('Burger Records', 'green')
+Label.new('Motown', 'black')

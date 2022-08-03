@@ -53,8 +53,7 @@ def save_authors
 end
 
 Author.new('Tadesse', 'Alemayehu')
-Author.new('Tadesse1', 'Alemayehu1')
-Author.new('Tadesse3', 'Alemayehu3')
-Author.new('Tadesse1', 'Alemayehu1',id: 12)
+Author.new('Aurturo', 'Hermida')
+Author.new('Alex', 'Puente')
 # list_all_authors
 # save_authors

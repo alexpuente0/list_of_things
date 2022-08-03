@@ -47,6 +47,10 @@ def list_all_genres
 end
 
 # initial genrs
+def save_genres
+  Genre.save_genres
+end
+
 Genre.new('Fantasy')
 Genre.new('Comedy')
 Genre.new('Fairy Tales')
@@ -54,6 +58,3 @@ Genre.new('Legends')
 Genre.new('Scientific')
 Genre.new('Horror')
 Genre.new('Mystery')
-def save_genres
-  Genre.save_genres
-end
