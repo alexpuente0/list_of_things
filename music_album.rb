@@ -25,9 +25,9 @@ class MusicAlbum < Item
     @@albums.each do |a|
       json_array << { gid: a.genre.id, aid: a.author.id,
                       lid: a.label.id, pd: a.publish_date,
-                      archived: g.archived, on_spotify: a.on_spotify}
+                      archived: g.archived, on_spotify: a.on_spotify }
     end
-    album_db = File.new('album.json', 'a')
+    album_db = File.new('album.json', 'w')
     album_db.write(JSON.generate(json_array))
     album_db.close
   end
