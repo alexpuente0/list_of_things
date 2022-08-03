@@ -20,10 +20,6 @@ class Book < Item
     @@books
   end
 
-  def self.books(item)
-    @@books = item
-  end
-
   def self.save_books
     json_array = []
     Book.books.each do |bk|
@@ -82,9 +78,6 @@ def load_books
     loaded_books.push(Book.new(book['genre'], book['author'], book['label'], book['publish_dt'], book['publisher'],
                                book['cover_st']))
   end
-
-  file.close
-  Book.books(loaded_books)
 end
 
 # add_book('scyfi', 'tolkien', 'red')

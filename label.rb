@@ -14,7 +14,7 @@ class Label
     @@labels << self
   end
 
-    def self.labels
+  def self.labels
     @@labels
   end
 
@@ -24,15 +24,15 @@ class Label
   end
 end
 
-  def self.save_labels
-    json_array = []
-    Label.labels.each do |lb|
-      json_array << { title: lb.title, color: lb.color }
-    end
-    label_db = File.new('label.json', 'w')
-    label_db.write(JSON.generate(json_array))
-    label_db.close
+def self.save_labels
+  json_array = []
+  Label.labels.each do |lb|
+    json_array << { title: lb.title, color: lb.color }
   end
+  label_db = File.new('label.json', 'w')
+  label_db.write(JSON.generate(json_array))
+  label_db.close
+end
 
 def list_all_labels
   Label.labels.each do |label|
