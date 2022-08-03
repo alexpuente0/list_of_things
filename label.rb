@@ -2,11 +2,18 @@ class Label
   attr_accessor :title, :color
   attr_reader :id, :items
 
+  @@labels = []
+
   def initialize(title, color)
     @id = rand(0..100_000)
     @title = title
     @color = color
     @items = []
+    @@labels << self
+  end
+
+    def self.labels
+    @@labels
   end
 
   def add_item(item)
@@ -15,9 +22,17 @@ class Label
   end
 end
 
-# test01 = Label.new('generic title', 'red')
+def list_all_labels
+  Label.labels.each do |label|
+    print "
+      title: #{label.title}
+      color: #{label.color}
+      "
+  end
+end
 
-# p test01
-# p test01.title
-# p test01.color
-# p test01.id
+# test_a = Label.new('generic title', 'red')
+# test_b = Label.new('title2', 'blue')
+
+# list_all_labels
+
