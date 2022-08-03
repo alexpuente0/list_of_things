@@ -34,7 +34,10 @@ class MusicAlbum < Item
 
   def self.album_list
     MusicAlbum.albums.each do |album|
-      puts album
+      puts "Author name: #{album.author.first_name},
+            On spotify: #{album.on_spotify},
+            Genre: #{album.genre.name}"
+      
     end
   end
 
