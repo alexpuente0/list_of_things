@@ -1,3 +1,4 @@
+require 'json'
 require './item'
 require_relative './genre'
 
@@ -17,6 +18,18 @@ class MusicAlbum < Item
 
   def self.albums
     @@albums
+  end
+
+  def self.save_albums
+    json_array = []
+    @@albums.each do |a|
+      json_array << { gid: a.genre.id, aid: a.author.id,
+                      lid: a.label.id, pd: a.publish_date,
+                      archived: g.archived, on_spotify: a.on_spotify}
+    end
+    album_db = File.new('album.json', 'a')
+    album_db.write(JSON.generate(json_array))
+    album_db.close
   end
 
   def album_list
@@ -43,3 +56,10 @@ class MusicAlbum < Item
     super() && @on_spotify
   end
 end
+
+def save_albums
+  MusicAlbum.save_albums
+end
+
+album_list
+save_albums
