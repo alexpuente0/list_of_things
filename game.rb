@@ -1,3 +1,6 @@
+require_relative "genre"
+require_relative "label"
+require_relative "author"
 require 'json'
 require_relative 'item'
 class Game < Item
@@ -66,9 +69,25 @@ def save_games
   Game.save_games
 end
 
-=begin add list album method
-creating a method just to make is concistent.
-=end
 def list_all_games
    Game.list_all_games
+end
+
+def load_games
+  return [] unless File.exist?('./game.json')
+
+  file = File.open('./game.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_games = []
+
+  read_json.each do |game|
+    loaded_games.push(
+      Game.new(
+      Genre.genres.select {|genre| game['gid']==genre.id}[0],
+      Author.authors.select {|author| game['aid']==author.id}[0],
+      Label.labels.select {|label| game['lid']==label.id}[0],
+      game['pd'], game['mp']?'Y':'N', game['lp_at'], game['archived']))
+  end
 end

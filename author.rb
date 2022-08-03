@@ -66,8 +66,3 @@ def load_authors
   end
 end
 
-# Author.new('Tadesse', 'Alemayehu')
-# Author.new('Aurturo', 'Hermida')
-# Author.new('Alex', 'Puente')
-# list_all_authors
-# save_authors

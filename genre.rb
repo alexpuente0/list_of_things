@@ -30,23 +30,19 @@ class Genre
   def self.genres
     @@genres
   end
-# make the list_all_genres an instance method so we can call it without instantiating the music class object
+
   def self.list_all_genres
     Genre.genres.each do |genre|
-# update the put statement
+
       puts "Id: #{genre.id}, Name: #{genre.name}"
     end
   end
 end
 
-=begin add list album method
-creating a method just to make is concistent.
-=end
 def list_all_genres
    Genre.list_all_genres
 end
 
-# initial genrs
 def save_genres
   Genre.save_genres
 end
@@ -66,10 +62,4 @@ def load_geners
   end
 end
 
-# Genre.new('Fantasy')
-# Genre.new('Comedy')
-# Genre.new('Fairy Tales')
-# Genre.new('Legends')
-# Genre.new('Scientific')
-# Genre.new('Horror')
-# Genre.new('Mystery')
+

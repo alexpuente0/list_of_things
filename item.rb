@@ -13,7 +13,7 @@ class Item
   def move_to_archive
     @archived = true if can_be_archived? == true
   end
-# add setter with an add_item method call
+
   def genre=(genre)
     @genre = genre
     genre.add_item self

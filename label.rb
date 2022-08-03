@@ -44,30 +44,11 @@ def list_all_labels
   end
 end
 
-# test_a = Label.new('generic title', 'red')
-# test_b = Label.new('title2', 'blue')
-
-# p test01
-# p test01.title
-# p test01.color
-# p test01.id
-
-#method to display list of labels
 def list_all_labels
   Label.labels.each do |label|
     puts "Id: #{label.id}, Title: #{label.title}, Color: #{label.color}"
   end
 end
-
-# list_all_labels
-
-# def add_label
-#   puts 'Insert title: '
-#   title = gets.chomp
-#   puts 'Insert color: '
-#   color = gets.chomp
-#   Label.new(title, color)
-# end
 
 def save_labels
   Label.save_labels
@@ -89,8 +70,3 @@ end
 
 
 
-# Label.new('Death Row Records', 'red')
-# Label.new('I.R.S.', 'black')
-# Label.new('Sub Pop', 'red')
-# Label.new('Burger Records', 'green')
-# Label.new('Motown', 'black')

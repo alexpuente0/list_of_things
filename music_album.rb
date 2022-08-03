@@ -52,14 +52,12 @@ class MusicAlbum < Item
     super() && @on_spotify
   end
 end
-=begin add list album method
-creating a method just to make is concistent.
-=end
+
 def list_all_music_albums
   MusicAlbum.album_list
 end
 
-# I have taken this method out of the class
+
 
 def add_album(genre, author, label)
     p 'Insert published date: '
@@ -78,17 +76,17 @@ def save_albums
 end
 
 
-def load_album
+def load_albums
   return [] unless File.exist?('./album.json')
 
   file = File.open('./album.json')
   read_file = File.read(file)
   read_json = JSON.parse(read_file)
 
-  loaded_books = []
+  loaded_albums = []
 
   read_json.each do |album|
-    loaded_books.push(
+    loaded_albums.push(
       MusicAlbum.new(
       Genre.genres.select {|genre| album['gid']==genre.id}[0],
       Author.authors.select {|author| album['aid']==author.id}[0],

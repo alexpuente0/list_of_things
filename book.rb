@@ -89,15 +89,6 @@ def load_books
   end
 end
 
-# add_book('scyfi', 'tolkien', 'red')
-
-# test_a = Book.new('genGenre', 'genAuthor', 'ddd', '24/12/2000', 'genPublisher', 'bad')
-# test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2000', 'genPublisher', 'good')
-
-# list_all_books
-
-# add add book method
-
 def add_book(genre, author, label)
     puts 'Insert published date: '
       publish_date = gets.chomp
