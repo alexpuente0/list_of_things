@@ -81,10 +81,11 @@ def load_books
 
   read_json.each do |book|
     loaded_books.push(
+      Book.new(
       Genre.genres.select {|genre| book['genre']==genre.id}[0],
       Author.authors.select {|author| book['author']==author.id}[0],
       Label.labels.select {|label| book['label']==label.id}[0],
-      book['publish_dt'], book['publisher'], book['cover_st'])
+      book['publish_dt'], book['publisher'], book['cover_st']))
   end
 end
 

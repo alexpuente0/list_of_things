@@ -18,7 +18,6 @@ class Genre
     @@genres.each do |e|
       json_array << {id: e.id, name: e.name}
     end
-    p json_array
     genre_db = File.new('genre.json', 'w')
     genre_db.write(JSON.generate(json_array))
     genre_db.close
