@@ -57,3 +57,4 @@ CREATE TABLE books(
   CONSTRAINT author_fk FOREIGN KEY(author) REFERENCES author(id),
   CONSTRAINT label_fk FOREIGN KEY(label) REFERENCES label(id)
 );
+
