@@ -3,6 +3,7 @@ require_relative 'label'
 require_relative 'author'
 require 'json'
 require_relative 'item'
+require "pry"
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
@@ -12,9 +13,9 @@ class Game < Item
     @genre = genre
     @author = author
     @label = label
+    @last_played_at = Date.parse(last_played_at)
     super(publish_date)
     @multiplayer = multiplayer.upcase == 'Y'
-    @last_played_at = Date.parse(last_played_at)
     @@games << self
   end
 
@@ -47,7 +48,8 @@ def self.list_all_games
     puts "
     Multiplayer: #{game.multiplayer},
     Label: #{game.label.title},
-    Last Played on: #{game.last_played_at}
+    Last Played on: #{game.last_played_at},
+    Archived: #{game.archived}
     "
   end
 end
