@@ -1,3 +1,6 @@
+require_relative "genre"
+require_relative "label"
+require_relative "author"
 require 'json'
 require_relative './item'
 
@@ -77,8 +80,11 @@ def load_books
   loaded_books = []
 
   read_json.each do |book|
-    loaded_books.push(Book.new(book['genre'], book['author'], book['label'], book['publish_dt'], book['publisher'],
-                               book['cover_st']))
+    loaded_books.push(
+      Genre.genres.select {|genre| book['genre']==genre.id}[0],
+      Author.authors.select {|author| book['author']==author.id}[0],
+      Label.labels.select {|label| book['label']==label.id}[0],
+      book['publish_dt'], book['publisher'], book['cover_st'])
   end
 end
 

@@ -6,8 +6,8 @@ class Label
 
   @@labels = []
 
-  def initialize(title, color)
-    @id = rand(0..100_000)
+  def initialize(id=nil,title, color)
+    @id = id||rand(0..100_000)
     @title = title
     @color = color
     @items = []
@@ -28,7 +28,7 @@ end
 def self.save_labels
   json_array = []
   Label.labels.each do |lb|
-    json_array << { title: lb.title, color: lb.color }
+    json_array << { id: lb.id, title: lb.title, color: lb.color }
   end
   label_db = File.new('label.json', 'w')
   label_db.write(JSON.generate(json_array))
@@ -83,14 +83,14 @@ def load_labels
   loaded_labels = []
 
   read_json.each do |label|
-    loaded_labels.push(Label.new(label['title'], label['color']))
+    loaded_labels.push(Label.new(id=label['id'],label['title'], label['color']))
   end
 end
 
 
 
-Label.new('Death Row Records', 'red')
-Label.new('I.R.S.', 'black')
-Label.new('Sub Pop', 'red')
-Label.new('Burger Records', 'green')
-Label.new('Motown', 'black')
+# Label.new('Death Row Records', 'red')
+# Label.new('I.R.S.', 'black')
+# Label.new('Sub Pop', 'red')
+# Label.new('Burger Records', 'green')
+# Label.new('Motown', 'black')

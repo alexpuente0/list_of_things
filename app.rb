@@ -32,6 +32,7 @@ def save_everything
 end
 
 def load_everything
-  load_books
   load_labels
+  load_geners
+  load_books
 end

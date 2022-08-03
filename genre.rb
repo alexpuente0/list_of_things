@@ -5,18 +5,18 @@ class Genre
 
   @@genres = []
 
-  def initialize(name)
-    @id = rand(0..100_000)
+  def initialize(id=nil,name)
+    @id = id||rand(0..100_000)
     @name = name
     @items = []
     @@genres << self
   end
-# use setter for the gener
+# use setter for the genre
 
   def self.save_genres
     json_array = []
     @@genres.each do |e|
-      json_array << [e.id, e.name]
+      json_array << {id: e.id, name: e.name}
     end
     p json_array
     genre_db = File.new('genre.json', 'w')
@@ -52,10 +52,25 @@ def save_genres
   Genre.save_genres
 end
 
-Genre.new('Fantasy')
-Genre.new('Comedy')
-Genre.new('Fairy Tales')
-Genre.new('Legends')
-Genre.new('Scientific')
-Genre.new('Horror')
-Genre.new('Mystery')
+
+def load_geners
+  return [] unless File.exist?('./genre.json')
+
+  file = File.open('./genre.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_genres = []
+
+  read_json.each do |genre|
+    loaded_genres.push(Genre.new(id=genre['id'],genre['name']))
+  end
+end
+
+# Genre.new('Fantasy')
+# Genre.new('Comedy')
+# Genre.new('Fairy Tales')
+# Genre.new('Legends')
+# Genre.new('Scientific')
+# Genre.new('Horror')
+# Genre.new('Mystery')
