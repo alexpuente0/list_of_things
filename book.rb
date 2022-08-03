@@ -2,7 +2,8 @@ require 'json'
 require_relative './item'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :archived
+  attr_accessor :publisher, :cover_state
+  attr_reader :id
 
   @@books = []
 
@@ -23,8 +24,8 @@ class Book < Item
   def self.save_books
     json_array = []
     Book.books.each do |bk|
-      json_array << { genre: bk.genre, author: bk.author,
-                      label: bk.label, publish_dt: bk.publish_date,
+      json_array << { genre: bk.genre.id, author: bk.author.id,
+                      label: bk.label.id, publish_dt: bk.publish_date,
                       publisher: bk.publisher, cover_st: bk.cover_state }
     end
     book_db = File.new('book.json', 'w')
@@ -46,6 +47,7 @@ def list_all_books
       archived: #{book.archived}
       publisher: #{book.publisher}
       cover_state: #{book.cover_state}
+      \n
       "
   end
 end

@@ -2,6 +2,7 @@ require 'json'
 class Genre
   attr_accessor :name, :items
   attr_reader :id
+
   @@genres = []
 
   def initialize(name)
@@ -12,7 +13,7 @@ class Genre
   end
 # use setter for the gener
 
-  def self.save_albums
+  def self.save_genres
     json_array = []
     @@genres.each do |e|
       json_array << [e.id, e.name]
@@ -24,7 +25,7 @@ class Genre
   end
 
   def add_item(item)
-    (@items << item) && item.gener=self unless @items.include? item
+    (@items << item) && item.genre=self unless @items.include? item
   end
 
   def self.genres

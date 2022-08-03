@@ -4,6 +4,7 @@ require_relative './genre'
 
 class MusicAlbum < Item
   attr_accessor :on_spotify
+  attr_reader :id
 
   @@albums = []
 
@@ -25,7 +26,7 @@ class MusicAlbum < Item
     @@albums.each do |a|
       json_array << { gid: a.genre.id, aid: a.author.id,
                       lid: a.label.id, pd: a.publish_date,
-                      archived: g.archived, on_spotify: a.on_spotify }
+                      archived: a.archived, on_spotify: a.on_spotify }
     end
     album_db = File.new('album.json', 'w')
     album_db.write(JSON.generate(json_array))

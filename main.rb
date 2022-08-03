@@ -2,7 +2,9 @@ require_relative "app"
 def main
   puts "Welcome to my catalog!\n\n"
   response = nil
-# change "p" with "puts" because p prints the quotes also
+
+  load_everything
+
   while response != '10'
     puts "*************************************************"
     puts "Please choose an option by entering a number\n\n"
@@ -43,6 +45,7 @@ def main
       genre, author, label=parameters("game")
       add_game(genre, author, label)
     when '10'
+      save_everything
       exit
     end
     puts 'press Enter to continue :'

@@ -22,7 +22,7 @@ class Game < Item
   def self.save_games
     json_array = []
     @@games.each do |g|
-      json_array << { gid: g.gener.id, aid: g.author.id,
+      json_array << { gid: g.genre.id, aid: g.author.id,
                       lid: g.label.id, pd: g.publish_date, mp: g.multiplayer,
                       lp_at: g.last_played_at, archived: g.archived }
     end

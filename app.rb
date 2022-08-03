@@ -21,3 +21,17 @@ def parameters(item_name)
   throw "we couldn't found seleted profiles with provided id" unless genre&&author&&label
   [genre[0],author[0],label[0]]
 end
+
+def save_everything
+  save_authors
+  save_albums
+  save_books
+  save_games
+  save_labels
+  save_genres
+end
+
+def load_everything
+  load_books
+  load_labels
+end
