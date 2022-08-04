@@ -1,18 +1,17 @@
 require 'date'
 require_relative '../game'
+require_relative '../author'
+require_relative '../label'
 describe Author do
   context 'check for data type and value' do
     before(:each) do
-      @author = double("Author")
-      @genre = double("gener")
-      @label = double("label")
-      allow(@author).to receive(:add_item)
-      allow(@genre).to receive(:add_item)
-      allow(@label).to receive(:add_item)
+      @author = Author.new('Tadesse', 'Alemayehu')
+      @genre = Genre.new("fantasy")
+      @label = Label.new('title',"color")
       @game = Game.new(@genre, @author, @label, '2000-12-05',
                        'y', '2015-12-05')
     end
-    it 'Assert add_item is called for gener, author and label' do
+    it 'Assert add_item is called for gener, author and label objects' do
       expect(@author).to receive(:add_item)
       expect(@genre).to receive(:add_item)
       expect(@label).to receive(:add_item)
