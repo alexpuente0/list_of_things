@@ -1,18 +1,22 @@
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
 require 'json'
 require_relative './item'
 
 class Book < Item
-  attr_accessor :publisher, :cover_state, :archived
+  attr_accessor :publisher, :cover_state
+  attr_reader :id
 
   @@books = []
 
   def initialize(genre, author, label, publish_date, publisher, cover_state)
-    super(publish_date)
     @genre = genre
     @author = author
     @label = label
     @publisher = publisher
     @cover_state = cover_state
+    super(publish_date)
     @@books << self
   end
 
@@ -23,8 +27,8 @@ class Book < Item
   def self.save_books
     json_array = []
     Book.books.each do |bk|
-      json_array << { genre: bk.genre, author: bk.author,
-                      label: bk.label, publish_dt: bk.publish_date,
+      json_array << { genre: bk.genre.id, author: bk.author.id,
+                      label: bk.label.id, publish_dt: bk.publish_date,
                       publisher: bk.publisher, cover_st: bk.cover_state }
     end
     book_db = File.new('book.json', 'w')
@@ -35,7 +39,7 @@ class Book < Item
   private
 
   def can_be_archived?
-    return true if super || @cover_state == 'bad'
+    super() || @cover_state == 'bad'
   end
 end
 
@@ -46,19 +50,9 @@ def list_all_books
       archived: #{book.archived}
       publisher: #{book.publisher}
       cover_state: #{book.cover_state}
+      \n
       "
   end
-end
-
-def add_book(genre, author, label)
-  puts 'Insert published date: '
-  publish_date = gets.chomp
-  puts 'Insert publisher: '
-  publisher = gets.chomp
-  puts 'Insert cover state:  '
-  cover_state = gets.chomp
-  Book.new(genre, author, label,
-           publish_date, publisher, cover_state)
 end
 
 def save_books
@@ -75,14 +69,24 @@ def load_books
   loaded_books = []
 
   read_json.each do |book|
-    loaded_books.push(Book.new(book['genre'], book['author'], book['label'], book['publish_dt'], book['publisher'],
-                               book['cover_st']))
+    loaded_books.push(
+      Book.new(
+        Genre.genres.select { |genre| book['genre'] == genre.id }[0],
+        Author.authors.select { |author| book['author'] == author.id }[0],
+        Label.labels.select { |label| book['label'] == label.id }[0],
+        book['publish_dt'], book['publisher'], book['cover_st']
+      )
+    )
   end
 end
 
-# add_book('scyfi', 'tolkien', 'red')
-
-# test_a = Book.new('genGenre', 'genAuthor', 'ddd', '24/12/2000', 'genPublisher', 'bad')
-# test_b = Book.new('erhga', 'eddd', 'hhhhhhh', '24/12/2000', 'genPublisher', 'good')
-
-# list_all_books
+def add_book(genre, author, label)
+  puts 'Insert published date: '
+  publish_date = gets.chomp
+  puts 'Insert publisher: '
+  publisher = gets.chomp
+  puts 'Insert cover state: [good/bad] '
+  cover_state = gets.chomp
+  Book.new(genre, author, label,
+           publish_date, publisher, cover_state)
+end

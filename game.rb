@@ -1,3 +1,6 @@
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
 require 'json'
 require_relative 'item'
 class Game < Item
@@ -5,13 +8,13 @@ class Game < Item
 
   @@games = []
   def initialize(genre, author, label, publish_date,
-                 multiplayer, last_played_at, archived)
-    super(publish_date, archived: archived)
+                 multiplayer, last_played_at)
     @genre = genre
-    add_author(author)
+    @author = author
     @label = label
-    @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at)
+    super(publish_date)
+    @multiplayer = multiplayer.upcase == 'Y'
     @@games << self
   end
 
@@ -22,9 +25,9 @@ class Game < Item
   def self.save_games
     json_array = []
     @@games.each do |g|
-      json_array << { gid: g.gener.id, aid: g.author.id,
+      json_array << { gid: g.genre.id, aid: g.author.id,
                       lid: g.label.id, pd: g.publish_date, mp: g.multiplayer,
-                      lp_at: g.last_played_at, archived: g.archived }
+                      lp_at: g.last_played_at }
     end
     game_db = File.new('game.json', 'w')
     game_db.write(JSON.generate(json_array))
@@ -38,26 +41,55 @@ class Game < Item
   end
 end
 
-def list_all_games
+# make the llist_all_games an instance method so we can call it without instantiating the music class object
+def self.list_all_games
   Game.games.each do |game|
-    puts "Title: #{game.label.title}. color: #{game.label.color}"
+    puts "
+    Multiplayer: #{game.multiplayer},
+    Label: #{game.label.title},
+    Last Played on: #{game.last_played_at},
+    Archived: #{game.archived}
+    "
   end
 end
 
 def add_game(genre, author, label)
   puts 'pleas enter publish data :'
   publish_date = gets.chomp
-  puts 'Multi player :'
+  puts 'Multi player? [Y/N] :'
   multiplayer = gets.chomp
   puts 'Last played at :'
   last_played_at = gets.chomp
-  puts 'archived: [Y/N] :'
-  archived = gets.chomp.upcase == 'Y'
   Game.new(genre, author, label,
            publish_date, multiplayer,
-           last_played_at, archived)
+           last_played_at)
 end
 
 def save_games
   Game.save_games
+end
+
+def list_all_games
+  Game.list_all_games
+end
+
+def load_games
+  return [] unless File.exist?('./game.json')
+
+  file = File.open('./game.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_games = []
+
+  read_json.each do |game|
+    loaded_games.push(
+      Game.new(
+        Genre.genres.select { |genre| game['gid'] == genre.id }[0],
+        Author.authors.select { |author| game['aid'] == author.id }[0],
+        Label.labels.select { |label| game['lid'] == label.id }[0],
+        game['pd'], game['mp'] ? 'Y' : 'N', game['lp_at']
+      )
+    )
+  end
 end

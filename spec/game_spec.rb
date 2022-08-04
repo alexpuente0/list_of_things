@@ -1,17 +1,22 @@
 require 'date'
 require_relative '../game'
 require_relative '../author'
+require_relative '../label'
 describe Author do
   context 'check for data type and value' do
     before(:each) do
       @author = Author.new('Tadesse', 'Alemayehu')
-      @gener = double('Gener')
-      @label = double('label')
-      @game = Game.new(@gener, @author, @label, '2000-12-05',
-                       2, '2015-12-05', false)
+      @genre = Genre.new('fantasy')
+      @label = Label.new('title', 'color')
+      @game = Game.new(@genre, @author, @label, '2000-12-05',
+                       'y', '2015-12-05')
     end
-    it 'assert author is instance of Author' do
-      expect(@game.author).to be_an_instance_of(Author)
+    it 'Assert add_item is called for gener, author and label objects' do
+      expect(@author).to receive(:add_item)
+      expect(@genre).to receive(:add_item)
+      expect(@label).to receive(:add_item)
+      @game = Game.new(@genre, @author, @label, '2000-12-05',
+                       'y', '2015-12-05')
     end
     it 'assert game property have the right value' do
       expect(@game.author.first_name).to eq('Tadesse')

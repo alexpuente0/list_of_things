@@ -5,42 +5,57 @@ class Genre
 
   @@genres = []
 
-  def initialize(name)
-    @id = rand(0..100_000)
+  def initialize(name, id = nil)
+    @id = id || rand(0..100_000)
     @name = name
     @items = []
     @@genres << self
   end
+  # use setter for the genre
 
-  def self.save_albums
+  def self.save_genres
     json_array = []
     @@genres.each do |e|
-      json_array << [e.id, e.name]
+      json_array << { id: e.id, name: e.name }
     end
-    p json_array
     genre_db = File.new('genre.json', 'w')
     genre_db.write(JSON.generate(json_array))
     genre_db.close
   end
 
   def add_item(item)
-    (@items << item) && item.add_genre(self) unless @items.include? item
+    (@items << item) unless @items.include? item
   end
 
   def self.genres
     @@genres
   end
 
-  private
-
-  def list_all_genres
+  def self.list_all_genres
     Genre.genres.each do |genre|
-      puts `id: #{genre.id}
-            gengre: #{genre.name}`
+      puts "Id: #{genre.id}, Name: #{genre.name}"
     end
   end
 end
 
+def list_all_genres
+  Genre.list_all_genres
+end
+
 def save_genres
   Genre.save_genres
+end
+
+def load_geners
+  return [] unless File.exist?('./genre.json')
+
+  file = File.open('./genre.json')
+  read_file = File.read(file)
+  read_json = JSON.parse(read_file)
+
+  loaded_genres = []
+
+  read_json.each do |genre|
+    loaded_genres.push(Genre.new(genre['name'], genre['id']))
+  end
 end

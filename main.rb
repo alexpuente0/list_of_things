@@ -1,43 +1,55 @@
+require_relative 'app'
 def main
   puts "Welcome to my catalog!\n\n"
   response = nil
+
+  load_everything
+
   while response != '10'
+    puts '*************************************************'
     puts "Please choose an option by entering a number\n\n"
-    p '1-List all books'
-    p '2-List all music albums'
-    p '3-List of games'
-    p '4-List all genres'
-    p '5-List all labels '
-    p '6-List all authors '
-    p '7-Add a book'
-    p '8-Add a music album'
-    p '9-Add a game'
-    p 'type 10 to exit'
+    puts '1-List all books'
+    puts '2-List all music albums'
+    puts '3-List of games'
+    puts '4-List all genres'
+    puts '5-List all labels '
+    puts '6-List all authors '
+    puts '7-Add a book'
+    puts '8-Add a music album'
+    puts '9-Add a game'
+    puts 'type 10 to exit'
+    puts '*************************************************'
 
     response = gets.chomp
 
     case response
     when '1'
-      p 'not implemented yet'
+      list_all_books
     when '2'
-      p '2 not implemented yet'
+      list_all_music_albums
     when '3'
-      p '3 not implemented yet'
+      list_all_games
     when '4'
-      p ' 4 not implemented yet'
+      list_all_genres
     when '5'
-      p '5not implemented yet'
+      list_all_labels
     when '6'
-      p '6not implemented yet'
+      list_all_authors
     when '7'
-      p '7not implemented yet'
+      genre, author, label = parameters('book')
+      add_book(genre, author, label)
     when '8'
-      p '8not implemented yet'
+      genre, author, label = parameters('album')
+      add_album(genre, author, label)
     when '9'
-      p '9not implemented yet'
+      genre, author, label = parameters('game')
+      add_game(genre, author, label)
     when '10'
+      save_everything
       exit
     end
+    puts 'press Enter to continue :'
+    gets.chomp
   end
 end
 
