@@ -4,6 +4,9 @@
 
 > An object-based personal list where you can save your favorite thing information ordered by author, lables and genre.
 
+# Video demostration
+
+- [Video Demo](https://drive.google.com/file/d/14Gf_FlWP8zmLooRv543YnDO26iv2Oyy1/view?usp=sharing)
 
 ## Built With
 
