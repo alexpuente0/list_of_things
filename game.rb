@@ -3,7 +3,7 @@ require_relative 'label'
 require_relative 'author'
 require 'json'
 require_relative 'item'
-require "pry"
+require 'pry'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 

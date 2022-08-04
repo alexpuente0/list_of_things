@@ -6,8 +6,8 @@ describe Author do
   context 'check for data type and value' do
     before(:each) do
       @author = Author.new('Tadesse', 'Alemayehu')
-      @genre = Genre.new("fantasy")
-      @label = Label.new('title',"color")
+      @genre = Genre.new('fantasy')
+      @label = Label.new('title', 'color')
       @game = Game.new(@genre, @author, @label, '2000-12-05',
                        'y', '2015-12-05')
     end

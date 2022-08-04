@@ -7,7 +7,7 @@ require 'date'
 describe MusicAlbum do
   before :each do
     @author = Author.new('Arturo', 'Hermida')
-    @label = Label.new('title',"color")
+    @label = Label.new('title', 'color')
     @genre = Genre.new('Rock')
     @album = MusicAlbum.new(@genre, @author, @label, '2018-12-05', false)
   end

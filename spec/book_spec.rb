@@ -6,7 +6,7 @@ require_relative '../author'
 describe Book do
   before :each do
     @author = Author.new('Alex', 'Puente')
-    @genre = Genre.new("ScyFi")
+    @genre = Genre.new('ScyFi')
     @label = Label.new('Compilation', 'Green')
     @book = Book.new(@genre, @author, @label, '23/12/2020', 'Editorial X', 'bad')
   end

@@ -8,7 +8,7 @@ describe Label do
   before :each do
     @label = Label.new('SciFi', 'Blue')
     @author = Author.new('Alex', 'Puente')
-    @genre = Genre.new("ScyFi")
+    @genre = Genre.new('ScyFi')
     @item = double('mock item')
     allow(@item).to receive(:label=)
   end
