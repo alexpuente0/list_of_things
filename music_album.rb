@@ -3,7 +3,6 @@ require_relative 'label'
 require_relative 'author'
 require 'json'
 require './item'
-require 'pry'
 require_relative './genre'
 
 class MusicAlbum < Item
@@ -49,7 +48,6 @@ class MusicAlbum < Item
   private
 
   def can_be_archived?
-    binding.pry
     super() && @on_spotify
   end
 end

@@ -24,7 +24,7 @@ class Genre
   end
 
   def add_item(item)
-    (@items << item) && item.genre = self unless @items.include? item
+    (@items << item) unless @items.include? item
   end
 
   def self.genres
