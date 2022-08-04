@@ -1,9 +1,16 @@
 require_relative '../label'
 require_relative '../item'
+require_relative '../book'
+require_relative '../genre'
+require_relative '../author'
 
 describe Label do
   before :each do
     @label = Label.new('SciFi', 'Blue')
+    @author = Author.new('Alex', 'Puente')
+    @genre = Genre.new("ScyFi")
+    @item = double('mock item')
+    allow(@item).to receive(:label=)
   end
 
   describe '#New Label' do
@@ -25,10 +32,8 @@ describe Label do
   end
 
   describe 'Add items to label'
-  it 'Push a new item in Each label class object' do
-    item = Item.new('08/04/2020')
-    @label.add_item(item)
-
-    expect(@label.items).to include(item)
+  it 'Push a new item in a label class object' do
+    @label.add_item(@item)
+    expect(@label.items).to include(@item)
   end
 end
