@@ -14,9 +14,9 @@ class Book < Item
     @genre = genre
     @author = author
     @label = label
-    super(publish_date)
     @publisher = publisher
     @cover_state = cover_state
+    super(publish_date)
     @@books << self
   end
 
@@ -39,7 +39,7 @@ class Book < Item
   private
 
   def can_be_archived?
-    !(super() || @cover_state == 'bad')
+    super() || @cover_state == 'bad'
   end
 end
 
