@@ -59,9 +59,9 @@ bin/rspec
 
 👤 **Alejandro Puente**
 
-- GitHub: [@alexpuente0](https://github.com/Artbsc1992)
-- LinkedIn: [Alejandro Puente](https://www.linkedin.com/in/alejandro-puente-far%C3%ADas-154a7629/)
-
+- GitHub: [@alexpuente0](https://github.com/alexpuente0)
+- Twitter: [@zero_rock](https://twitter.com/zero_rock)
+- LinkedIn: [Alejandro Puente](https://www.linkedin.com/in/alex-puente-farias/)
 
 ## 🤝 Contributing
 
